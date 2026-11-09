@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#10131c" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%23e5bf7d%22>✦</text></svg>">
+  <title>Emberfall — Echoes of the Rift</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Emberfall home"><span class="brand-mark">✦</span><span>EMBERFALL<small>Echoes of the Rift</small></span></a>
+      <div class="top-center"><span class="season-tag"><i></i> SEASON 04 · ASHEN TIDE</span><span class="divider"></span><span class="level-label">ADVENTURER <b id="player-level">12</b></span></div>
+      <div class="currency-row"><div class="currency"><span class="coin gold">◈</span><b id="gold-count">2,480</b><button class="plus" data-toast="Gold is earned by completing missions.">+</button></div><div class="currency"><span class="coin crystal">✧</span><b>340</b><button class="plus" data-toast="Crystals are a rare reward.">+</button></div><button class="avatar" title="Player profile">A</button></div>
+    </header>
+    <main class="layout">
+      <aside class="left-rail">
+        <div class="nav-label">SANCTUARY</div>
+        <button class="nav-item active" data-view="adventure"><span>⌂</span>Adventure</button>
+        <button class="nav-item" data-view="heroes"><span>♙</span>Heroes <em>3</em></button>
+        <button class="nav-item" data-view="codex"><span>▤</span>Codex</button>
+        <div class="rail-bottom"><div class="season-card"><div class="season-art">✦</div><b>Ashen Tide</b><small>Season ends in<br><strong>12d 08h</strong></small><div class="season-progress"><i></i></div></div><button class="settings" data-toast="Settings are ready for your next expedition.">⚙ <span>Settings</span></button></div>
+      </aside>
+      <section class="main-area">
+        <div class="screen-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> THE FRONTIER</div><h1 id="page-title">Adventure</h1><p id="page-subtitle">The rift stirs. Gather your allies and answer the call.</p></div><div class="streak"><span class="streak-icon">♨</span><span><b>7 day streak</b><small>Claim your daily blessing</small></span><button aria-label="Claim daily blessing" data-toast="Daily blessing claimed! +50 gold">↗</button></div></div>
+        <section class="battle-card" id="battle-card">
+          <canvas id="battlefield" aria-label="Real-time battle arena"></canvas>
+          <div class="arena-vignette"></div>
+          <div class="arena-top"><div class="mission-badge"><span class="mission-icon">⚔</span><div><small id="mission-kicker">STORY · CHAPTER 3</small><b id="mission-title">The Hollow Gate</b></div></div><div class="arena-top-right"><span class="difficulty"><i></i><i></i><i></i><i class="muted"></i> VETERAN</span><button class="sound-button" id="sound-toggle" aria-label="Toggle sound">♫</button><button class="pause-button" id="pause-button" aria-label="Pause battle">Ⅱ</button></div></div>
+          <div class="wave-banner" id="wave-banner"><span class="wave-flare">✦</span><span><small>RIFT ENCOUNTER</small><b>WAVE <i id="wave-num">1</i> / 3</b></span></div>
+          <div class="boss-bar hidden" id="boss-bar"><div class="boss-caption"><span>✦ RIFT WARDEN</span><b id="boss-hp-text">100%</b></div><div class="boss-track"><i id="boss-hp"></i></div></div>
+          <div class="battle-hud">
+            <div class="active-hero-hud"><div class="hero-portrait active-portrait" id="hud-portrait"><span id="hud-hero-symbol">✦</span><i></i></div><div class="hero-vitals"><div class="hero-hud-name"><b id="hud-name">LYRA</b><span id="hud-role">BLADE DANCER</span></div><div class="hp-track"><i id="hero-hp"></i></div><div class="vital-numbers"><span>HP <b id="hp-text">1000 / 1000</b></span><span class="energy-label">✧ <b id="energy-text">45%</b></span></div></div></div>
+            <div class="combat-stats"><span>✦ <b id="kill-count">0</b> <small>DEFEATED</small></span><span class="battle-timer">◷ <b id="timer">00:00</b></span></div>
+            <div class="ability-row">
+              <button class="ability basic" id="attack-btn" aria-label="Basic attack"><span class="keycap">LMB</span><span class="ability-icon">⚔</span><small>ATTACK</small></button>
+              <button class="ability" id="skill-one" aria-label="Use first skill"><span class="keycap">Q</span><span class="ability-icon">✧</span><small id="skill-one-label">MOON SLASH</small><i class="cooldown-shade"></i></button>
+              <button class="ability" id="skill-two" aria-label="Use second skill"><span class="keycap">E</span><span class="ability-icon">◉</span><small id="skill-two-label">PHANTOM STEP</small><i class="cooldown-shade"></i></button>
+              <button class="ability ultimate" id="ultimate-btn" aria-label="Use ultimate ability"><span class="keycap">R</span><span class="ability-icon">✹</span><small>ULTIMATE</small><div class="ultimate-charge" id="ultimate-charge"></div></button>
+            </div>
+          </div>
+          <div class="battle-toast hidden" id="battle-toast"></div>
+          <div class="pause-overlay hidden" id="pause-overlay"><div class="pause-panel"><span class="pause-emblem">Ⅱ</span><h2>Battle paused</h2><p>Take a breath, adventurer.</p><button class="primary-button" id="resume-btn">RESUME BATTLE <span>↗</span></button><button class="text-button" id="retreat-btn">Retreat to sanctuary</button></div></div>
+          <div class="mission-overlay" id="mission-overlay"><div class="mission-dialog"><div class="dialog-eyebrow"><span>✦</span> YOUR NEXT EXPEDITION</div><h2>Choose your path</h2><p>Every rift holds a different trial. Your party is ready.</p><div class="mission-options" id="mission-options"></div><div class="party-preview"><div class="party-label">YOUR PARTY <span>3 / 3</span></div><div class="party-chips" id="party-chips"></div></div><button class="primary-button launch-button" id="launch-btn">ENTER THE RIFT <span>↗</span></button><div class="control-hint">WASD / ARROWS TO MOVE <i>·</i> Q E R TO CAST <i>·</i> 1 2 3 TO SWITCH</div></div></div>
+        </section>
+        <div class="below-arena"><div class="objective"><span class="objective-symbol">◎</span><span><small>FIELD OBJECTIVE</small><b id="objective-text">Defeat all enemies in the rift</b></span></div><div class="control-legend"><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> MOVE</span><span><kbd>SPACE</kbd> DODGE</span><span><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> SWITCH</span></div></div>
+        <div class="mobile-controls"><div class="mobile-pad"><button data-dir="up">▲</button><div><button data-dir="left">◀</button><button data-dir="down">▼</button><button data-dir="right">▶</button></div></div><div class="mobile-actions"><button data-action="attack">⚔</button><button data-action="skill-one">Q</button><button data-action="skill-two">E</button><button data-action="ultimate">✹</button></div></div>
+      </section>
+      <aside class="right-rail">
+        <div class="panel-heading"><div><span class="eyebrow">BATTLE FORMATION</span><h2>Your heroes <small>3/3</small></h2></div><button class="edit-party" id="edit-party">EDIT <span>↗</span></button></div>
+        <div class="party-list" id="party-list"></div>
+        <div class="side-divider"></div>
+        <div class="panel-heading missions-heading"><div><span class="eyebrow">DAILY BOUNTIES</span><h2>Field notes</h2></div><span class="refresh-tag">RESETS 08:42</span></div>
+        <div class="quest-list"><div class="quest"><span class="quest-icon orange">⚔</span><div class="quest-info"><b>Clear the rift</b><small>Defeat 12 enemies</small><div class="quest-progress"><i id="quest-enemy-progress"></i></div></div><span class="quest-reward">◈ 120</span></div><div class="quest"><span class="quest-icon violet">✧</span><div class="quest-info"><b>Skillful fighter</b><small>Cast 3 abilities</small><div class="quest-progress"><i id="quest-skill-progress"></i></div></div><span class="quest-reward">✦ 30</span></div><div class="quest"><span class="quest-icon teal">♙</span><div class="quest-info"><b>Gather your team</b><small>Switch heroes 2 times</small><div class="quest-progress"><i id="quest-switch-progress"></i></div></div><span class="quest-reward">◈ 80</span></div></div>
+        <div class="upgrade-card"><div class="upgrade-top"><span>✦</span><small>HERO GROWTH</small></div><b>Stronger together.</b><p>Spend your earned gold to empower your heroes.</p><button id="upgrade-btn">UPGRADE HERO <span>◈ 100</span></button></div>
+        <div class="footer-note"><span>✧</span> Your progress is saved automatically</div>
+      </aside>
+    </main>
+    <div class="hero-modal hidden" id="hero-modal"><div class="hero-modal-card"><button class="modal-close" id="modal-close">×</button><span class="eyebrow">ROSTER · 03 HEROES</span><h2>Choose your champion</h2><p>Recruit new heroes and shape your formation.</p><div id="roster-grid" class="roster-grid"></div><button class="recruit-button" id="recruit-btn">RECRUIT HERO <span>◈ 800</span></button></div></div>
+    <div class="toast" id="toast"></div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
