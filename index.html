@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#07111f" />
+  <title>Marvel Future Fight 3D — New York Under Siege</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="scene" aria-label="3D superhero battle arena"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Future Fight home"><span class="brand-mark">M</span><span class="brand-copy">MARVEL<span>FUTURE FIGHT</span></span></a>
+      <div class="mission"><span class="eyebrow">NEW YORK · DISTRICT 01</span><strong>THE CITY IS UNDER ATTACK</strong></div>
+      <button class="icon-btn" id="sound-btn" title="Toggle sound" aria-label="Toggle sound">♫</button>
+      <button class="icon-btn" id="pause-btn" title="Pause game" aria-label="Pause game">Ⅱ</button>
+    </header>
+    <section class="hud-left">
+      <div class="hero-card"><div class="hero-avatar" id="avatar">S</div><div><div class="hero-name" id="hero-name">SPIDER-MAN</div><div class="hero-class">AVENGER · TIER 3</div></div><button class="switch-btn" id="switch-btn">SWAP <span>↻</span></button></div>
+      <div class="stat-row"><span>VITALITY</span><b id="hp-text">100%</b></div><div class="bar hp"><i id="hp-fill"></i></div>
+      <div class="stat-row energy-label"><span>ENERGY</span><b id="energy-text">100%</b></div><div class="bar energy"><i id="energy-fill"></i></div>
+      <div class="objective"><span class="objective-icon">✦</span><div><small>CURRENT OBJECTIVE</small><strong id="objective-text">DEFEAT THE INVADERS</strong><span id="enemy-counter">HOSTILES 0 / 8</span></div></div>
+    </section>
+    <section class="hud-right"><div class="wave-pill"><span class="live-dot"></span> WAVE <b id="wave-number">01</b><span class="divider"></span><span id="timer">00:00</span></div><div class="combo" id="combo-box"><b id="combo-count">0</b><span>HIT<br>COMBO</span></div></section>
+    <div class="boss-alert" id="boss-alert"><span>⚠</span> WARNING — ELITE INBOUND</div>
+    <footer class="bottom-hud"><div class="controls-hint"><span class="keycap">W</span><span class="keycap">A</span><span class="keycap">S</span><span class="keycap">D</span><span>MOVE</span><span class="keycap wide">SPACE</span><span>ATTACK</span><span class="keycap">Q</span><span>SPECIAL</span><span class="keycap">SHIFT</span><span>DODGE</span></div><div class="skill-row">
+      <button class="skill-btn" data-skill="web"><span class="skill-key">Q</span><span class="skill-icon">⌁</span><span class="skill-name">WEB BLAST</span><span class="cooldown"></span></button>
+      <button class="skill-btn" data-skill="ultimate"><span class="skill-key">E</span><span class="skill-icon">✷</span><span class="skill-name">ULTIMATE</span><span class="cooldown"></span></button>
+      <button class="skill-btn attack" id="attack-btn"><span class="skill-key">SPACE</span><span class="skill-icon">✦</span><span class="skill-name">ATTACK</span></button>
+      <button class="skill-btn dodge" id="dodge-btn"><span class="skill-key">SHIFT</span><span class="skill-icon">➤</span><span class="skill-name">DODGE</span></button>
+    </div></footer>
+    <div class="touch-controls"><div class="dpad"><button data-dir="up">▲</button><div><button data-dir="left">◀</button><button data-dir="down">▼</button><button data-dir="right">▶</button></div></div><div class="touch-actions"><button data-action="dodge">DODGE</button><button data-action="attack">✦</button><button data-action="web">⌁</button><button data-action="ultimate">✷</button></div></div>
+    <div class="overlay" id="start-screen"><div class="start-panel"><div class="overline"><span></span> S.H.I.E.L.D. EMERGENCY BROADCAST</div><h1>NEW YORK<br><em>NEEDS YOU.</em></h1><p>Another dimension is breaking through. Suit up, take down the invading forces, and defend the city.</p><div class="roster"><button class="hero-pick selected" data-hero="spider"><span class="pick-art spider">S</span><span>SPIDER-MAN<small>AGILITY · WEB</small></span><i>✓</i></button><button class="hero-pick" data-hero="iron"><span class="pick-art iron">I</span><span>IRON MAN<small>TECH · BLAST</small></span><i>✓</i></button><button class="hero-pick" data-hero="strange"><span class="pick-art strange">D</span><span>DOCTOR STRANGE<small>MYSTIC · ARCANE</small></span><i>✓</i></button></div><button class="primary-btn" id="start-btn">ENTER THE BATTLE <span>→</span></button><div class="start-note">WASD TO MOVE · SPACE TO ATTACK · Q / E FOR ABILITIES</div></div></div>
+    <div class="overlay hidden" id="pause-screen"><div class="dialog"><div class="overline"><span></span> MISSION PAUSED</div><h2>TAKE A BREATHER.</h2><p>The city is counting on you.</p><button class="primary-btn" id="resume-btn">RESUME MISSION <span>→</span></button></div></div>
+    <div class="overlay hidden" id="end-screen"><div class="dialog"><div class="overline" id="end-kicker"><span></span> MISSION COMPLETE</div><h2 id="end-title">CITY SAVED.</h2><p id="end-copy">The invaders have been driven back.</p><div class="results"><span>ELIMINATIONS <b id="result-kills">0</b></span><span>TIME <b id="result-time">00:00</b></span><span>BEST COMBO <b id="result-combo">0</b></span></div><button class="primary-btn" id="restart-btn">FIGHT AGAIN <span>↻</span></button></div></div>
+    <div class="toast" id="toast"></div>
+    <div class="mobile-tip">LANDSCAPE RECOMMENDED <button id="dismiss-tip">×</button></div>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
