@@ -21,7 +21,7 @@
 <div class="overlay" id="intro"><div class="intro-card"><div class="intro-mark">✦ &nbsp; A STARFALL ENCOUNTER &nbsp; ✦</div><h2>THE HOLLOW <span>KING</span></h2><p class="intro-desc">The last star is going dark. Face the void-crowned sovereign in a duel to decide what survives the night.</p><div class="mission"><div><b>YOUR MISSION</b>Break the King's 2,400-point guard</div><div><b>YOUR EDGE</b>Five skills. One cataclysm.</div></div><button class="start-button" id="startBtn">ENTER THE ARENA &nbsp; →</button><div class="intro-foot">WASD / ARROWS TO MOVE &nbsp;·&nbsp; SPACE TO DODGE</div></div></div>
 <div class="overlay hidden" id="result"><div class="intro-card result-card"><div class="intro-mark" id="resultMark">✦ &nbsp; ENCOUNTER COMPLETE &nbsp; ✦</div><h2 id="resultTitle">VICTORY</h2><p class="intro-desc" id="resultDesc">The void has receded. The last star still burns.</p><button class="start-button" id="retryBtn">FIGHT AGAIN &nbsp; ↻</button></div></div>
 </main>
-<script>
+<script type="text/plain">
 (() => {
 'use strict';
 const canvas=document.getElementById('scene'),ctx=canvas.getContext('2d'),game=document.getElementById('game');
@@ -121,4 +121,4 @@ $('startBtn').addEventListener('click',reset);$('retryBtn').addEventListener('cl
 $('game').addEventListener('contextmenu',e=>e.preventDefault());
 requestAnimationFrame(frame);
 })();
-</script></body></html>
+</script><script src="game.js"></script></body></html>
